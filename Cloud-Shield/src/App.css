@@ -8,6 +8,331 @@
   box-sizing: border-box;
 }
 
+/* ── Page ────────────────────────────────────────────────────────────────── */
+.page {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  background: #060918;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 16px;
+  overflow: hidden;
+  position: relative;
+  color: #e2e8f0;
+}
+
+/* ── Ambient blobs ───────────────────────────────────────────────────────── */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+.blob-1 {
+  width: 500px; height: 500px;
+  background: #3b82f6;
+  top: -120px; left: -120px;
+}
+.blob-2 {
+  width: 450px; height: 450px;
+  background: #6366f1;
+  bottom: -100px; right: -100px;
+}
+
+/* ── Container ───────────────────────────────────────────────────────────── */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  font-size: 56px;
+  line-height: 1;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 20px rgba(99,102,241,0.8));
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #93c5fd, #818cf8, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── Search Box ──────────────────────────────────────────────────────────── */
+.search-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 10px 10px 10px 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s;
+}
+
+.search-box:focus-within {
+  border-color: rgba(99,102,241,0.5);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+
+.search-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.search-icon {
+  font-size: 16px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  color: #e2e8f0;
+  min-width: 0;
+}
+
+.search-box input::placeholder {
+  color: #475569;
+}
+
+.search-box button {
+  flex-shrink: 0;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.search-box button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.search-box button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.search-box button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+.spinner {
+  width: 18px; height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error Banner ────────────────────────────────────────────────────────── */
+.error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239,68,68,0.35);
+  color: #fca5a5;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* ── Results ─────────────────────────────────────────────────────────────── */
+.results {
+  animation: fadeUp 0.4s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── City Header ─────────────────────────────────────────────────────────── */
+.city-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.city-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 6px;
+}
+
+.city-desc {
+  font-size: 15px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ── Weather Grid ────────────────────────────────────────────────────────── */
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 28px 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99,102,241,0.35);
+  background: rgba(99,102,241,0.08);
+}
+
+.card-icon {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.card-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #f1f5f9;
+}
+
+.card-unit {
+  font-size: 16px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* ── Risk Box ────────────────────────────────────────────────────────────── */
+.risk-box {
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border: 1px solid transparent;
+}
+
+.risk-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.risk-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.risk-level {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.risk-message {
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.9;
+  text-align: right;
+  max-width: 300px;
+}
+
+/* Risk colours */
+.risk-box.low {
+  background: linear-gradient(135deg, rgba(21,128,61,0.4), rgba(22,163,74,0.2));
+  border-color: rgba(34,197,94,0.3);
+  box-shadow: 0 0 30px rgba(34,197,94,0.12);
+}
+.risk-box.medium {
+  background: linear-gradient(135deg, rgba(161,98,7,0.4), rgba(234,179,8,0.2));
+  border-color: rgba(234,179,8,0.35);
+  box-shadow: 0 0 30px rgba(234,179,8,0.12);
+}
+.risk-box.high {
+  background: linear-gradient(135deg, rgba(153,27,27,0.5), rgba(239,68,68,0.2));
+  border-color: rgba(239,68,68,0.35);
+  box-shadow: 0 0 30px rgba(239,68,68,0.15);
+  animation: pulse-danger 2s ease-in-out infinite;
+}
+
+@keyframes pulse-danger {
+  0%, 100% { box-shadow: 0 0 30px rgba(239,68,68,0.15); }
+  50%       { box-shadow: 0 0 50px rgba(239,68,68,0.35); }
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 540px) {
   h1 { font-size: 30px; }
