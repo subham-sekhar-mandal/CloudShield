@@ -37,5 +37,37 @@ function App() {
     setRisk({ level, message, className, rainfall });
   }, [weather]);
 
- 
+  // ── Fetch weather data ─────────────────────────────────────────────────
+  async function getWeatherData() {
+    if (!city.trim()) { setError("Please enter a city name."); return; }
+
+    setError("");
+    setLoading(true);
+    setWeather(null);
+    setRisk(null);
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
+    try {
+      const res  = await fetch(url);
+      const data = await res.json();
+
+      if      (data.cod === 401)    setError("❌ Invalid API Key.");
+      else if (data.cod === "404")  setError("❌ City not found. Check the spelling.");
+      else if (data.cod !== 200)    setError(`❌ Error ${data.cod}: ${data.message}`);
+      else                          setWeather(data);
+    } catch (err) {
+      console.error(err);
+      setError("❌ Network error. Check your internet connection.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") getWeatherData();
+  }
+
+  
+
 
