@@ -33,8 +33,7 @@ Calculates cloudburst risk using predefined thresholds:
 🟡 Medium Risk
 🔴 High Risk
 
-# Alert & Alarm System
+# Alert System
 
 Displays warning popups for high-risk situations
-Plays alarm sound for emergency alerts
 Visual indicators (color-coded warnings)
